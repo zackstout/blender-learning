@@ -306,6 +306,83 @@
 
 ---
 
+# Animation for Beginners! Learn to Animation like a PRO in Blender
+
+- When you select an object, you immediately get a timeline in the bottom tray.
+- One way to create a Keyframe is click button next to object property like X in the righthand panel.
+- Or you can hit "I" to bring up Insert Keyframe, and select Location
+- Or hit "I" while hovering over those properties.
+- Now go to Time 80 in Timeline, and move the cube.
+- Make sure you save the keyframe changes, with hitting "I".
+- But there is an Autokeying button (on timeline controls) -- but this can be dangerous as well
+- Your keys are like objects in the scene (G, etc), but they live in the Timeline.
+- We just set 3 frames, and it smoothly interpolates the parabola for us.
+
+- In bottom tray, click upper left icon and switch to Graph editor.
+- User Prefs > Animation > Only show selected F curve keyframes
+- You can then manipulate the tween graph's points. Neat.
+
+- Select all keyframes, then right click > Interpolation Mode (easing)
+
+- 17:00, mentions "rigs", perfect.
+- Rig is like a control system for a puppet. A Skeleton.
+- Create > Empty > Circle (or whatever). It's just a bare position in space.
+- Parent the cube to the empty. The Empty is the controller.
+- So when you scale the Empty, it will scale the cube, in the way you want, from the bottom rather than the center.
+
+---
+
+## Exporting Animation to Three.js
+
+- https://www.youtube.com/watch?v=GByT8ActvDk&ab_channel=WaelYasmina
+- Test things out by drag and drop gltf file into threejs.org/editor, Wow
+- `const clip = THREE.AnimationClip.findByName(clips, "HeadAction");`
+
+## Oh wow he does GLSL Snacks too
+
+- https://www.youtube.com/watch?v=6mVB93NnfqQ&ab_channel=WaelYasmina
+
+## Rigging in Blender
+
+- https://www.youtube.com/watch?v=1khSuB6sER0&ab_channel=ProductionCrate
+- Edit mode: Add Bone
+- Select In Front in Armature settings to be able to see bones inside mesh
+- You can right click to subdivide to make one bone into multiple, such as a spine.
+- Click endpoint of a bone and click E to extrude another bone.
+- Tool tab contains "X mirror Axis" so you don't have to do 2x the work
+- Bones are essentially just Parented-to-each-other objects. Neat.
+- With rig selected, Ctrl+P > With Automatic Weights
+- So each bone can only control certain body parts. Sure.
+- Mesh Edit > Merge by Distance can help make that automatic process work
+- You can use Decimate modifier to remove vertices. Neat.
+- Inverse Kinematics: Change in hand or feet can propagate back to entire arm/leg
+
+## Rigging for impatient people
+
+- https://www.youtube.com/watch?v=DDeB4tDVCGY&ab_channel=JoeyCarlino
+- Shift+A to add Armature
+- Can like right click: Symmetrize to copy all left-side bones to right
+- Whoa, Ctrl+R to loop cut a rectanglular prism into a bunch of slices
+- Some Weight Painting tips
+- Oh sweet! With Rigid Rigging, which only works if model is made of of Separate objects/segments, you don't need Weights at all!
+- You just parent directly to bones
+- Select one object. Shift click the armature, then enter Pose mode.
+- Then select the bone you want to parent it to, ctrl+P, choose Bone.
+- Now the object should follow the bone when you move it.
+- There is an add-on to speed this up: https://github.com/g3ntile/parentToNearestBone
+- More Inverse Kinematics stuff, seems complicated haha
+
+- Select object. Shift click armature. Enter pose mode. Select bone. Ctrl+P > Bone.
+- OR:
+  - Select the mesh object.
+  - Go to the Object Constraints tab.
+  - Add a Child Of constraint.
+  - Set the Armature as the target.
+  - Choose the correct Bone.
+  - Click “Set Inverse” if needed to prevent a jump.
+- Ok nvm that didn't quite work. I think because we had rotated and moved the armatures?
+- Ctrl+Tab is pose mode shortcut.
+
 ---
 
 ## Oh Boy I'm Doing It
@@ -314,3 +391,14 @@
 - just using trackpad rotates the view.
 - Shift+trackpad pans the view.
 - Cmd+trackpad scales the view. Right on.
+
+- Ahhhhh OK we had to set the Driver in the Bone > Transform.... NOT IN THE OBJECT > TRANSFORM
+- AHA AND LOOK! OUR CUSTOM IDX PROPERTIES DID ACTUALLY GET ADDED! THEY GOT ADDED HERE AT BONE LEVEL, NOT AT THE OBJECT LEVEL.
+
+- Fn+ Shift+ F5 to enter 3d mode and
+- Fn + Shift + F11 to enter text mode.
+- Wish there was easier toggle...
+- We could also open up a new viewing pane....somehow....
+
+- NOTE: We can use cmd+p instead of ctrl+p to get parenting menu
+- NOTE: We use OPTION in place of ALT, e.g. OPTION+H to unhide elements
