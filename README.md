@@ -275,11 +275,14 @@
 
 ### Animation
 
-- Ryan King Art: Animation for Beginners!
+- [x] Ryan King Art: Animation for Beginners!
 - CbaileyFilm: Animation for Beginners! Learn to Animation like a PRO in Blender (CHOOSE ONE)
 - CbaileyFilm: Animation for Beginners! Default Cube to Short Film in 29 Minutes
 - Polyfjord: My new Rigging work flow
 - Polyfjord: Animate a character in 15 Minutes
+- [x] (mine: Exporting animation to three.js)
+- [x] (mine: Rigging for the impatient)
+- [x] (mine: Rigging in Blender)
 
 ### Extra
 
@@ -294,7 +297,7 @@
 
 #### Realism
 
-- Blender: The Secrets of Photorealism
+- Blender: The Secrets of Photorealism\*\*
 
 #### Geometry Nodes
 
@@ -392,6 +395,8 @@
 - Shift+trackpad pans the view.
 - Cmd+trackpad scales the view. Right on.
 
+- Select object. Shift click armature. Enter pose mode. Select bone. Ctrl+P > Bone.
+
 - Ahhhhh OK we had to set the Driver in the Bone > Transform.... NOT IN THE OBJECT > TRANSFORM
 - AHA AND LOOK! OUR CUSTOM IDX PROPERTIES DID ACTUALLY GET ADDED! THEY GOT ADDED HERE AT BONE LEVEL, NOT AT THE OBJECT LEVEL.
 
@@ -402,3 +407,131 @@
 
 - NOTE: We can use cmd+p instead of ctrl+p to get parenting menu
 - NOTE: We use OPTION in place of ALT, e.g. OPTION+H to unhide elements
+
+- ✅ Only Actions that are pushed to NLA and active will get exported with glTF as separate animation clips.
+- Excellent question — and you're not alone! The system for creating multiple animations (called Actions) on a single object (especially an Armature) in Blender can feel a bit hidden at first. Let me walk you through the mental model and practical steps.
+  - You select the Armature → switch to Pose Mode
+  - Move/rotate bones
+  - Insert keyframes (usually with I → "Rotation" or "Location & Rotation")
+  - Blender stores those keyframes in the currently active Action
+- Use the Dope Sheet, switch to Action Editor, make new Actions.
+- Use Shield icon to preserve it even if unused.
+
+### Workflow
+
+- To add bones: Shift+A to add armature
+- Then move it and rotate it to where it needs to be
+- Then enter edit mode (Tab), grab the endpoint, move it where it needs to be,
+- Press E to extrude, continue
+- Then you need to manually parent each bone to each segment, that is annoying, but that is the "Shift click armature" flow from above.
+- Then, you enter pose mode with the armature selected, and you can select a particular bone, and in its Bones tab (NOT THE OBJECT PROPS TAB), you can add a driver.
+- Can reference "frame" as the system variable for time.
+- You can swivel around each property (rotationX, rotationY, etc) to see which one is right, before applying the driver.
+
+- One really nice thing is that you can synchronize animations across drivers just through math...
+- Like you don't actually need to have them connected by bones and "actually" affecting each other.
+
+- Ok, had some issues with exporting to GLB and making multiple animations...
+- But we got it now! at least with simple square. So know it's possible. No funny export options required. And we even had a bone in there.
+
+### Need to learn
+
+- Open multiple trays/panes/views
+- Snap objects to other objects
+
+### Grateful
+
+- Wow this feels like a perfect project to get comfortable with Blender.
+- So happy we're doing this!
+- So helpful to have something to structure and guide our learning a bit too. Certain topics are called to the forefront while others are ushered aside, depending on the specific project.
+- Yeah. I always was so intimidated by Blender.
+- And geometry nodes... who would have thought. Just shaders in disguise.
+
+### Ideas
+
+#### Sea Creatures
+
+- We NEED the purple luminiscent sponges...
+- Some kind of elkhorn...
+- Some kind of fans...
+- Brain coral would be really cool
+- Seaweed
+- Sea stars!
+- Sea urchins!!!
+- Clams?!
+- Crabs?! No.... No way. Not this time.
+- More realistic turtle arms: faster going down than back up.
+  - Also probably want some up/down bobbing movement to the whole body.
+- Oh make the neck stretch out when grabbing for food. sponges.
+
+#### SketchFab Examples
+
+- Whoa, coral reef render? https://sketchfab.com/3d-models/coral-reef-outcrop-8bc72c9e4575470ea30d1313e48b730c
+- Wow realistic fish pack, https://sketchfab.com/3d-models/fish-pack-30-coral-bay-96af1f4364644e1490834e556087ec0c
+- Nice corals https://sketchfab.com/3d-models/coral-reef-plants-objects-collection-097d596fab224eeeacbfead11b834146
+- Wow awesome sea lobster, https://sketchfab.com/3d-models/caribbean-spiny-lobster-female-anatomy-a6fa53e08721417e87c09414091a74c2
+  - Showing the anatomy! So cool!
+
+#### Goal
+
+- A real scene.
+- A fully realized experience.
+- Moving the camera around, nice lighting, etc. All of it.
+
+#### Overall Strategy
+
+- I like doing a base layer of fairly passive learning
+- Just kind of watching videos, learning what's possible, finding people whose style of explanation I enjoy
+- And then we can start to dive deeper once we really dig into it and start trying to make something on on our, into specific needed areas.
+
+### CG Boost: 10 Tips for Creating Epic Landscapes in Blender
+
+- Make reference file and study it of the real kind of environment you are trying to reproduce.
+- Use PureRef for this
+- ArtStation for ideas and inspiration
+- Good idea to think through how camera will move from the start, so you have a sense of what will be outside of view and cuttable.
+- Shadow adds a lot of epicness
+- Use a GOBO: a plane with a bunch of black holes in it. Place over the scene. Neat trick.
+- Use low poly (decimation) and low resolution assets where possible
+- Don't be afraid of using 2d planes!
+
+### The Key to Realistic Environments in Blender
+
+- GScatter for geometry nodes grass stuff
+- Create a mask to affect the scattering distribution, sure
+- Also vary sizes of each node in the Scatter with a mask
+- there is a nice way to add wind to every Scatter layer with linked effects, cool.
+
+### A simple procedural animation technique
+
+- https://www.youtube.com/watch?v=qlfh_rv6khY&t=1s&ab_channel=argonaut
+- Awesome 2d using circles in a distance-constrained chain
+- Neat use of parametric equations
+- Explanation of inverse kinematics. Given a target position, and an anchor and a chain, how to get there?
+- FABRIK = forward and backward reaching inverse kinematics.
+
+### A guide to attributes & fields - blender geometry nodes
+
+- https://www.youtube.com/watch?v=a-4oCHe-hDE&ab_channel=harryblends
+- Harry Blends
+- Yep this guy is the real deal. British dry and hilarious and smart. Let's go.
+- Ah yes, an Index node to power things, that's what we wanted with Drivers for sure.
+- Whoa got complicated at end about Field Context, when using points to control positions of Instances. Whose index is being referenced when?
+
+### A guide to blender's geometry node editor
+
+- https://www.youtube.com/watch?v=R8B7Cen8FTI&ab_channel=harryblends
+
+### Blender Tutorial: Geometry Nodes for Beginners - Part 1
+
+- Back to the Guru, this is great
+- Distribute points on faces, and then Instances from Points
+- Shouts out Erindale as the master
+- "tau" is a keyword for 2pi, sick
+
+### Hexagon World with Geometry Nodes Fields - Blender 3.0 Tutorial
+
+- Erindale
+- Yeah this guy is the one. He's gonna be the Akkela of this space for sure.
+- Calls out how if coming from shaders, this will feel very natural.
+- Points out quickly what diamonds and dashed lines mean (dynamic values, like coming from instance index)
